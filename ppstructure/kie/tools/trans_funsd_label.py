@@ -46,7 +46,7 @@ def load_funsd_label(image_dir, anno_dir):
     fn_info_map = dict()
     for anno_fn in annos:
         res = []
-        with open(os.path.join(anno_dir, anno_fn + ".json"), "r") as fin:
+        with open(os.path.join(anno_dir, anno_fn + ".json"), "r", encoding="utf8") as fin:
             infos = json.load(fin)
             infos = infos["form"]
             old_id2new_id_map = dict()
@@ -129,7 +129,7 @@ def main():
     test_output_dir = "train_data/FUNSD/test.json"
 
     fn_info_map = load_funsd_label(test_image_dir, test_anno_dir)
-    with open(test_output_dir, "w") as fout:
+    with open(test_output_dir, "w", encoding="utf8") as fout:
         for fn in fn_info_map:
             fout.write(fn + ".png" + "\t" + json.dumps(
                 fn_info_map[fn], ensure_ascii=False) + "\n")
@@ -139,7 +139,7 @@ def main():
     train_output_dir = "train_data/FUNSD/train.json"
 
     fn_info_map = load_funsd_label(train_image_dir, train_anno_dir)
-    with open(train_output_dir, "w") as fout:
+    with open(train_output_dir, "w", encoding="utf8") as fout:
         for fn in fn_info_map:
             fout.write(fn + ".png" + "\t" + json.dumps(
                 fn_info_map[fn], ensure_ascii=False) + "\n")

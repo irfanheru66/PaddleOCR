@@ -3,7 +3,7 @@ Global:
   epoch_num: &epoch_num 50
   log_smooth_window: 10
   print_batch_step: 10
-  save_model_dir: ./output/ser_vi_layoutxlm_xfund_zh
+  save_model_dir: ./output/ser_vi_layoutxlm_KTP
   save_epoch_step: 2000
   # evaluation is run every 10 iterations after the 0th iteration
   eval_batch_step: [ 0, 19 ]
@@ -11,7 +11,7 @@ Global:
   save_inference_dir:
   use_visualdl: False
   seed: 2022
-  infer_img: train_data/FUNSD/testing_data/images/82092117.png
+#  infer_img: train_data/FUNSD/testing_data/images/82092117.png
   # if you want to predict using the groundtruth ocr info,
   # you can use the following config
   # infer_img: train_data/XFUND/zh_val/val.json
@@ -31,7 +31,7 @@ Architecture:
     checkpoints:
     # one of base or vi
     mode: vi
-    num_classes: &num_classes 7
+    num_classes: &num_classes 50
 
 Loss:
   name: VQASerTokenLayoutLMLoss
@@ -95,7 +95,7 @@ Train:
   loader:
     shuffle: True
     drop_last: False
-    batch_size_per_card: 8
+    batch_size_per_card: 1
     num_workers: 4
 
 Eval:
@@ -132,5 +132,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 8
+    batch_size_per_card: 1
     num_workers: 4
